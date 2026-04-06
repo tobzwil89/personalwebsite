@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Dein Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A0E27;
+            --secondary: #1A1F3A;
+            --accent: #00D9FF;
+            --accent-secondary: #7B2FFF;
+            --text-primary: #E8E9ED;
+            --text-secondary: #A0A4B8;
+            --surface: #12162E;
+            --surface-elevated: #1C2140;
+            --gradient-primary: linear-gradient(135deg, #00D9FF 0%, #7B2FFF 100%);
+            --gradient-mesh: 
+                radial-gradient(at 20% 30%, rgba(0, 217, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 70%, rgba(123, 47, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(0, 217, 255, 0.05) 0px, transparent 50%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 8rem 3rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        section:not(#home) {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6rem;
+            position: relative;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-mesh);
+            opacity: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .home-content {
+            flex: 1;
+            z-index: 1;
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .greeting {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.05em;
+        }
+
+        .home-content h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .home-content h2 {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .home-content p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .home-image {
+            flex: 0 0 400px;
+            z-index: 1;
+            animation: slideInRight 1s ease forwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        .profile-image-container::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.2;
+            border-radius: 8px;
+            z-index: -2;
+            filter: blur(40px);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Projects Section */
+        #projects .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface-elevated);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* CV Section */
+        #cv .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cv-section {
+            margin-bottom: 4rem;
+        }
+
+        .cv-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .cv-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .cv-item {
+            background: var(--surface-elevated);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .cv-item:hover {
+            border-left-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .cv-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cv-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .cv-item ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .cv-item ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--surface-elevated);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .skill-category h5 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .interests-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .interest-item {
+            background: var(--surface-elevated);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .interest-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .interest-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .interest-icon {
+            font-size: 1.5rem;
+        }
+
+        .interest-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        #contact {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #contact p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--surface-elevated);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .home-content {
+                align-items: center;
+            }
+
+            .home-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .home-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .home-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-image-container {
+                width: 300px;
+                height: 400px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                font-size: 0.85rem;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">YourName</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#cv" class="nav-link">CV</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="home-content">
+            <div class="greeting">Hi, ich bin</div>
+            <h1>Dein Name</h1>
+            <h2>BWL Student & <span class="gradient-text">Tech Enthusiast</span></h2>
+            <p>
+                Ich verbinde Business-Expertise mit technischen Skills. 
+                Von Python-Entwicklung bis hin zu Datenanalyse – ich zeige, 
+                dass BWLer mehr können als Excel-Tabellen.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Projekte ansehen</a>
+                <a href="#contact" class="btn btn-secondary">Kontakt</a>
+            </div>
+        </div>
+        <div class="home-image">
+            <div class="profile-image-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="Profilbild" class="profile-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <h2>Ausgewählte <span class="gradient-text">Projekte</span></h2>
+            <p>Praxisnahe Projekte, die meine technischen Fähigkeiten demonstrieren</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Financial Dashboard</h3>
+                <p>
+                    Ein interaktives Dashboard zur Analyse von Finanzdaten mit Python, 
+                    Pandas und Plotly. Automatisierte Datenverarbeitung und Visualisierung.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">Plotly</span>
+                    <span class="tag">Streamlit</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        → GitHub
+                    </a>
+                    <a href="#" class="project-link">
+                        → Live Demo
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Market Analysis Tool</h3>
+                <p>
+                    Web Scraping und Sentiment-Analyse von Marktdaten. 
+                    Automatische Reports und Visualisierungen für Investitionsentscheidungen.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">BeautifulSoup</span>
+                    <span class="tag">NLTK</span>
+                    <span class="tag">SQL</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        → GitHub
+                    </a>
+                    <a href="#" class="project-link">
+                        → Details
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Business Process Automation</h3>
+                <p>
+                    Automatisierung von repetitiven Business-Prozessen mit Python. 
+                    Reduzierung manueller Arbeit um 70% durch intelligente Scripts.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Selenium</span>
+                    <span class="tag">APIs</span>
+                    <span class="tag">Excel</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        → GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <div class="section-header">
+            <h2>Lebenslauf & <span class="gradient-text">Qualifikationen</span></h2>
+        </div>
+        <div class="cv-container">
+            <div class="cv-section">
+                <h3>Ausbildung</h3>
+                <div class="cv-item">
+                    <h4>Bachelor of Science - Betriebswirtschaftslehre</h4>
+                    <div class="cv-meta">Universität XYZ | 2021 - 2025</div>
+                    <ul>
+                        <li>Schwerpunkte: Finance, Digital Business, Data Analytics</li>
+                        <li>Relevante Kurse: Python for Business, Statistics, Machine Learning</li>
+                        <li>GPA: X.X</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <h3>Berufserfahrung</h3>
+                <div class="cv-item">
+                    <h4>Praktikant Business Analytics</h4>
+                    <div class="cv-meta">Unternehmen ABC | Jun 2024 - Sep 2024</div>
+                    <ul>
+                        <li>Entwicklung von Python-Scripts zur Datenanalyse und Automatisierung</li>
+                        <li>Erstellung von Dashboards und Reports für C-Level Management</li>
+                        <li>Implementierung eines ML-Modells zur Umsatzprognose</li>
+                    </ul>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Werkstudent Consulting</h4>
+                    <div class="cv-meta">Beratung XYZ | Okt 2023 - Mai 2024</div>
+                    <ul>
+                        <li>Unterstützung bei Strategieprojekten im Tech-Sektor</li>
+                        <li>Datenanalyse und Visualisierung mit Python und Tableau</li>
+                        <li>Kundenpräsentationen und Workshop-Moderation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <h3>Skills & Technologien</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h5>Programming</h5>
+                        <ul>
+                            <li>Python (Advanced)</li>
+                            <li>SQL</li>
+                            <li>JavaScript</li>
+                            <li>R</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Data & Analytics</h5>
+                        <ul>
+                            <li>Pandas, NumPy</li>
+                            <li>Scikit-learn</li>
+                            <li>Tableau, PowerBI</li>
+                            <li>Excel (VBA)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Business</h5>
+                        <ul>
+                            <li>Financial Modeling</li>
+                            <li>Strategy Consulting</li>
+                            <li>Process Optimization</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <h2>Über <span class="gradient-text">mich</span></h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Als BWL-Student mit starker Affinität zur Technologie verbringe ich 
+                    meine Zeit damit, die Lücke zwischen Business und Tech zu schließen. 
+                    Während meine Kommilitonen Excel-Formeln optimieren, baue ich 
+                    Python-Tools, die repetitive Aufgaben automatisieren.
+                </p>
+                <p>
+                    Meine Leidenschaft liegt darin, technische Lösungen für 
+                    Business-Probleme zu entwickeln. Ob Data Analytics, Process 
+                    Automation oder Web Development – ich liebe es, Dinge zu bauen, 
+                    die tatsächlich einen Mehrwert schaffen.
+                </p>
+                <p>
+                    Wenn ich nicht gerade programmiere oder an Projekten arbeite, 
+                    erkunde ich neue Technologien, reise durch Europa oder optimiere 
+                    meine Workflows mit den neuesten Tools.
+                </p>
+            </div>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <h4>
+                        <span class="interest-icon">🚀</span>
+                        Tech & Innovation
+                    </h4>
+                    <p>
+                        Immer auf der Suche nach den neuesten Trends in AI, 
+                        Web3 und FinTech. Besuche regelmäßig Tech-Konferenzen 
+                        und Hackathons.
+                    </p>
+                </div>
+                <div class="interest-item">
+                    <h4>
+                        <span class="interest-icon">✈️</span>
+                        Reisen & Kulturen
+                    </h4>
+                    <p>
+                        Von Tokyo bis San Francisco – ich liebe es, neue Orte 
+                        zu entdecken und verschiedene Business-Kulturen kennenzulernen.
+                    </p>
+                </div>
+                <div class="interest-item">
+                    <h4>
+                        <span class="interest-icon">📚</span>
+                        Kontinuierliches Lernen
+                    </h4>
+                    <p>
+                        Online-Kurse, Tech-Bücher und Side-Projects halten mich 
+                        ständig auf dem neuesten Stand der Technologie.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Lass uns <span class="gradient-text">vernetzen</span></h2>
+        <p>
+            Ob für Projektkooperationen, Job-Opportunities oder einfach 
+            zum Austausch über Tech und Business – ich freue mich auf deine Nachricht!
+        </p>
+        <div class="contact-methods">
+            <a href="mailto:deine.email@example.com" class="contact-card">
+                <h3>Email</h3>
+                <p>deine.email@example.com</p>
+            </a>
+            <a href="https://linkedin.com/in/deinprofil" target="_blank" class="contact-card">
+                <h3>LinkedIn</h3>
+                <p>/in/deinprofil</p>
+            </a>
+            <a href="https://github.com/deinusername" target="_blank" class="contact-card">
+                <h3>GitHub</h3>
+                <p>@deinusername</p>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Update active states
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Show target section
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
