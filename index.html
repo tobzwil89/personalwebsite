@@ -360,14 +360,9 @@
             padding: 1rem;
             color: var(--text-secondary);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .project-image-placeholder::after {
-            content: 'BA 1. Seite';
-            font-weight: 500;
         }
 
         .project-card::before {
@@ -761,12 +756,12 @@
             <div class="greeting">Hi, ich bin</div>
             <h1>Tobias Zwilling</h1>
             <p>
-                Hallo, mein Name ist Tobias. Ich studiere BWL und interessiere mich 
+                Hallo, mein Name ist Tobias. Ich studiere Master in Management an der Nova SBE und interessiere mich
                 nebenbei sehr für Tech, Daten und den Aktienmarkt. 
                 
                 Diese Website ist entstanden, weil vieles von dem, was ich in meiner 
                 Freizeit mache und lerne, nicht wirklich auf einen klassischen 
-                Lebenslauf passt. Hier findest du ein paar Projekte und Dinge, 
+                Lebenslauf passen. Hier findest du ein paar Projekte und Dinge,
                 die mich beschäftigen.
             </p>
             <div class="cta-buttons">
@@ -776,7 +771,7 @@
         </div>
         <div class="home-image">
             <div class="profile-image-container">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="Profilbild" class="profile-image">
+                <img src="assets/bizpraktika_Profilbild.JPG" alt="Profilbild" class="profile-image">
             </div>
         </div>
     </section>
@@ -788,6 +783,105 @@
             <p>Praxisnahe Projekte, die meine technischen Fähigkeiten demonstrieren</p>
         </div>
         <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>BizPraktika</h3>
+                    
+                    <p><strong>Das Problem</strong></p>
+                    <p>
+                        Während meiner Praktikumssuchen bin ich auf ein strukturelles Problem gestoßen:
+                        Die Fragmentierung des Recruiting-Marktes macht es extrem ineffizient, relevante Positionen zu finden.
+                    </p>
+                    <p><strong>Die Situation:</strong></p>
+                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Jede Top-Firma nutzt ein anderes Bewerbermanagementsystem (Deloitte → Workday, PwC → eigenes Portal, etc.)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Allgemeine Jobportale wie Indeed oder StepStone haben einen absoluten Overload: Bei einer Suche nach "Consulting Praktikum München" bekommst du 500+ Ergebnisse, aber nur 5-10 sind tatsächlich relevant
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            LinkedIn's Kategorisierung zwischen Praktikum, Werkstudent und Vollzeit ist inkonsistent. Es wird einfach gefühlt alles angezeigt.
+                        </li>
+                    </ul>
+                    <p><strong>Das Ergebnis:</strong></p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Studenten verbringen durchschnittlich 6-8 Stunden pro Bewerbungsrunde damit, 10+ verschiedene Karriereportale manuell zu durchsuchen. 
+                        Bei 3-4 Bewerbungsrunden pro Semester sind das 24-32 Stunden reine Suchzeit – Zeit, die besser in Vorbereitung oder Networking investiert werden könnte.
+                    </p>
+
+                    <p><strong>Die Lösung</strong></p>
+                    <p>
+                        BizPraktika ist eine spezialisierte Aggregationsplattform für Premium Business-Praktika in der DACH-Region. 
+                        Die Plattform löst das Fragmentierungsproblem durch kuratierte Konsolidierung.
+                    </p>
+                    <p><strong>Kern-Features:</strong></p>
+                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Multi-Dimensional Filtering:</strong> Track-basiertes Filtersystem (Big4, MBB, Investment Banking, Corporate) kombiniert mit Spezialisierung (Finance, Consulting, Operations) und geografischen Filtern
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Quality-First Approach:</strong> Fokus auf die Top 40-50 Praktika statt 1000+ irrelevante Listings. Jede Position wird manuell auf Relevanz geprüft
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Career Path Intelligence:</strong> Integrierte Track-Erklärungen zeigen, wie sich verschiedene Praktika in langfristige Karrierewege einfügen (z.B. Big4 Audit → Senior Consultant → Manager → Exit Options)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Real-Time Availability:</strong> Monatliche Updates stellen sicher, dass alle Listings aktuell und verfügbar sind
+                        </li>
+                    </ul>
+                    <p><strong>User Impact:</strong> Reduziert die Suchzeit von 6-8 Stunden auf ca. 15-20 Minuten pro Bewerbungsrunde – eine Zeitersparnis von ca. 90%.</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>Der Entwicklungsprozess</strong></p>
+                    <p><strong>Strategische Entscheidung:</strong></p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        Nach einem Kosten-Nutzen-Vergleich zwischen automatisiertem Scraping und manueller Kuration habe ich mich für einen <strong>Quality-First Approach</strong> entschieden.
+                    </p>
+                    <p><strong>Technische Implementierung:</strong></p>
+                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Frontend-Architektur:</strong> Vanilla JavaScript (bewusste Entscheidung gegen Framework-Overhead)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>Datenstruktur:</strong> JSON-basiertes Schema mit Array-Handling für Multi-Select Filtering
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            <strong>UI/UX:</strong> Glassmorphism Design mit 3D Transform Effects und CSS-optimierten Animationen
+                        </li>
+                    </ul>
+
+                    <p><strong>Key Learnings</strong></p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Technische Komplexität ist nicht gleich User Value. Ein manuell kuratiertes System mit 50 hochrelevanten Einträgen löst das Problem besser als ein automatisiertes System mit hohem Rauschen.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tag">Vanilla JavaScript</span>
+                        <span class="tag">JSON-Data</span>
+                        <span class="tag">Glassmorphism UI</span>
+                        <span class="tag">Responsive Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://bizpraktika.app" target="_blank" class="project-link">
+                            → bizpraktika.app
+                        </a>
+                    </div>
+                </div>
+                <div class="project-image-placeholder" style="border: none; background: none;">
+                    <img src="assets/bizpraktika_main.jpeg" alt="BizPraktika Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                </div>
+            </div>
+
             <div class="project-card">
                 <div class="project-info">
                     <h3>Bachelor Thesis</h3>
@@ -847,18 +941,19 @@
                         <span class="tag">Statsmodels</span>
                         <span class="tag">Financial Econometrics</span>
                     </div>
-                    <div class="project-links">
+                    <div class="project-links" style="align-items: center;">
                         <a href="https://github.com/tobzwil89/bachelor_thesis" target="_blank" class="project-link">
                             → GitHub Repository
                         </a>
                         <span style="color: var(--text-secondary);">|</span>
-                        <a href="https://www.dropbox.com/scl/fi/ulcu58gwj70hyij2a64a1/BA-geschw-rzt-f-r-Website.pdf?rlkey=6qrevk4ai4ea5jb6aji2ztu48&st=fjr45ili&dl=0" target="_blank" class="project-link">
-                            → Full Thesis
+                        <a href="mailto:tobias@example.com?subject=Request%20for%20BA%20Thesis&body=Hi%20Tobias,%0D%0A%0D%0AI%20would%20like%20to%20request%20access%20to%20your%20Bachelor%20thesis%20on%20Directors'%20Dealings.%0D%0A%0D%0AName:%20%0D%0ACompany:%20%0D%0APurpose:%20" 
+                           class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; margin-left: 0.5rem; background: var(--gradient-primary); color: white; border-radius: 6px; text-decoration: none; display: inline-block;">
+                          📧 Request Thesis
                         </a>
                     </div>
                 </div>
                 <div class="project-image-placeholder" style="border: none; background: none;">
-                    <img src="/var/folders/2r/534zr8151411t_stp79zj9tw0000gn/T/ai-chat-attachment-2513129291181655979.png" alt="Bachelorarbeit Deckblatt" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    <img src="assets/bizpraktika_BA.png" alt="Bachelorarbeit Deckblatt" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 </div>
             </div>
         </div>
