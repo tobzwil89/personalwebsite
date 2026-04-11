@@ -324,45 +324,156 @@
             color: var(--text-secondary);
         }
 
+        .projects-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            align-items: stretch;
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .projects-nav {
+            position: sticky;
+            top: 100px;
+            padding: 1.5rem 2rem;
+            background: var(--surface-elevated);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            z-index: 10;
+            width: 100%;
+        }
+
+        .projects-nav h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .projects-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .projects-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .projects-nav a:hover {
+            color: var(--accent);
+            padding-left: 0;
+            padding-bottom: 0.2rem;
+        }
+
+        .projects-nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            border-left-color: transparent;
+            padding-left: 0;
+            background: transparent;
+        }
+
         .projects-grid {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 4rem;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .project-description {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        @media (max-width: 1100px) {
+            .projects-wrapper {
+                flex-direction: column;
+            }
         }
 
         .project-card {
             background: var(--surface-elevated);
             border-radius: 12px;
-            padding: 2rem;
+            padding: 2.5rem;
             border: 1px solid rgba(0, 217, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             display: flex;
-            gap: 2.5rem;
-            align-items: flex-start;
+            gap: 3rem;
+            align-items: stretch;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .project-card.vertical {
+            flex-direction: column;
         }
 
         .project-info {
-            flex: 7;
+            flex: 1.2;
+        }
+
+        .project-card.vertical .project-info {
+            flex: none;
         }
 
         .project-image-placeholder {
-            flex: 3;
-            aspect-ratio: 1 / 1.414; /* DIN A4 ratio */
+            flex: 1;
+            aspect-ratio: auto;
             background: rgba(0, 217, 255, 0.05);
-            border: 1px dashed var(--accent);
+            border: none;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1rem;
+            padding: 0;
             color: var(--text-secondary);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             position: relative;
             overflow: hidden;
+        }
+
+        .project-card:not(.vertical) .project-image-placeholder {
+            max-width: 45%;
+        }
+
+        .project-card.vertical .project-image-placeholder {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+
+        .project-card.vertical .project-image-placeholder img {
+            object-fit: contain;
+            background: #050714;
+        }
+
+        .project-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .project-card::before {
@@ -408,12 +519,19 @@
 
         .tag {
             padding: 0.4rem 1rem;
-            background: rgba(0, 217, 255, 0.1);
+            background: rgba(0, 217, 255, 0.08);
             color: var(--accent);
-            border-radius: 20px;
-            font-size: 0.85rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 4px;
+            font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(0, 217, 255, 0.15);
+            border-color: var(--accent);
         }
 
         .project-links {
@@ -733,6 +851,112 @@
                 gap: 1rem;
             }
         }
+
+        /* Slideshow & Lightbox */
+        .slideshow-container {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 2rem;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem 0;
+        }
+
+        .slideshow-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .slideshow-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slideshow-item {
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .slideshow-item:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        /* Clickable Card */
+        .clickable-card {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .clickable-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.1);
+        }
+
+        /* Custom List Styles */
+        .custom-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        .custom-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .custom-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        .project-description h4 {
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .project-description p {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -783,178 +1007,381 @@
             <h2>Ausgewählte <span class="gradient-text">Projekte</span></h2>
             <p></p>
         </div>
-        <div class="projects-grid">
-            <div class="project-card full-image">
-                <div class="project-image-placeholder">
-                    <img src="assets/bizpraktika_main.jpeg" alt="BizPraktika Dashboard">
+        
+        <div class="projects-wrapper">
+            <aside class="projects-nav">
+                <h4>Übersicht</h4>
+                <ul>
+                    <li><a href="#stockpulse">StockPulse</a></li>
+                    <li><a href="#bizpraktika">BizPraktika</a></li>
+                    <li><a href="#thesis">Bachelor Thesis</a></li>
+                </ul>
+            </aside>
+
+            <div class="projects-grid">
+                <!-- StockPulse -->
+                <div id="stockpulse" class="project-card vertical">
+                    <div class="project-image-placeholder">
+                        <img src="assets/StockPulse_Main.jpeg" alt="StockPulse Dashboard">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tag">New Project</div>
+                        <h3>StockPulse</h3>
+                        
+                        <div class="project-description">
+                            <h4>Das Problem</h4>
+                            <p>Der moderne Aktienmarkt hat sich fundamental verändert. Seit dem GameStop-Squeeze 2021 und dem Aufstieg von WallStreetBets haben wir eine neue Realität: Retail-Investoren bewegen Milliarden durch koordinierte Social-Media-Aktivität. Meme-Stocks wie AMC, GME und BBBY steigen um 1000%+ – ohne fundamentale Rechtfertigung.</p>
+                            
+                            <p><strong>Die traditionellen Analyse-Tools versagen:</strong></p>
+                            <ul class="custom-list">
+                                <li>Bloomberg Terminal: Fokus auf Fundamentaldaten (P/E, DCF) – aber GME hatte ein P/E von 300+ während des Squeezes</li>
+                                <li>Seeking Alpha / Morningstar: Analyst-Coverage existiert primär für Large Caps. Pennystocks (<$5) haben praktisch keine institutionelle Beobachtung</li>
+                                <li>Technical Analysis: RSI und MACD zeigen "überkauft" – während Reddit den Kurs um weitere 300% treibt</li>
+                            </ul>
+
+                            <p><strong>Das strukturelle Problem:</strong></p>
+                            <p>Zwischen dem ersten Buzz auf r/wallstreetbets und dem Mainstream-Hype (CNBC Coverage, institutionelle Reaktion) liegen oft 24-72 Stunden. In dieser Zeitspanne entstehen die größten Gains – aber klassische Tools erkennen das Signal nicht.</p>
+
+                            <p><strong>Konkrete Zahlen:</strong></p>
+                            <ul class="custom-list">
+                                <li>57% der US-Haushalte investieren mittlerweile in Aktien (höchster Stand seit 2008)</li>
+                                <li>r/wallstreetbets hat 15+ Millionen Subscriber</li>
+                                <li>Durchschnittliche Holding-Period bei Retail: 3-7 Tage (vs. institutionelle Investoren: 5+ Jahre)</li>
+                            </ul>
+
+                            <p><strong>Das Ergebnis:</strong></p>
+                            <p>Investoren, die nur Fundamentaldaten analysieren, verpassen systematisch die profitabelsten Short-Term Plays – oder steigen zu spät ein, wenn der Hype bereits Mainstream ist.</p>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Die Lösung</h4>
+                            <p>StockPulse ist ein spekulatives Investment-Terminal, das Social-Media-Momentum als primäres Signal behandelt. Die Plattform kombiniert Echtzeit-Sentiment-Analyse aus Reddit, X (Twitter), StockTwits und Google Trends mit selektiven Fundamentaldaten, um spekulative Opportunities zu identifizieren, bevor sie Mainstream werden.</p>
+
+                            <p><strong>Kern-Technologie: Die SAS-Engine (Speculative Asset Score)</strong></p>
+                            <p>Ein proprietärer Algorithmus, der Aktien auf einer Skala von 0-100 bewertet basierend auf:</p>
+                            
+                            <ol class="custom-list" style="list-style: decimal; padding-left: 2rem;">
+                                <li style="padding-left: 0.5rem;"><strong>Momentum-Faktoren (40% Gewichtung):</strong>
+                                    <ul style="list-style: disc; margin: 0.5rem 0 1rem 1.5rem;">
+                                        <li>Social Mention Velocity (wie schnell verbreitet sich der Ticker?)</li>
+                                        <li>Cross-Platform Consistency (Reddit + Twitter + StockTwits bullish = höherer Score)</li>
+                                        <li>Influencer Impact (Posts von verifizierten Accounts mit 100k+ Followern)</li>
+                                        <li>Volume Spikes (Handelsvolumen vs. 30-Tage-Durchschnitt)</li>
+                                    </ul>
+                                </li>
+                                <li style="padding-left: 0.5rem;"><strong>Hype-Metriken (30% Gewichtung):</strong>
+                                    <ul style="list-style: disc; margin: 0.5rem 0 1rem 1.5rem;">
+                                        <li>Reddit Upvote-Velocity (Posts mit >1000 Upvotes in <6h)</li>
+                                        <li>Twitter Hashtag-Trending (#GME, #AMC trending = Signal)</li>
+                                        <li>Google Trends Breakout (regionale Suchvolumen-Spikes)</li>
+                                        <li>StockTwits Bullish/Bearish Ratio</li>
+                                    </ul>
+                                </li>
+                                <li style="padding-left: 0.5rem;"><strong>Risiko-Indikatoren (20% Gewichtung):</strong>
+                                    <ul style="list-style: disc; margin: 0.5rem 0 1rem 1.5rem;">
+                                        <li>Short Interest (>20% = Squeeze-Potential)</li>
+                                        <li>Float (kleinerer Float = höhere Volatilität)</li>
+                                        <li>Altman Z-Score (Insolvenzrisiko)</li>
+                                        <li>Debt/Equity Ratio</li>
+                                    </ul>
+                                </li>
+                                <li style="padding-left: 0.5rem;"><strong>Potential-Faktoren (10% Gewichtung):</strong>
+                                    <ul style="list-style: disc; margin: 0.5rem 0 1rem 1.5rem;">
+                                        <li>Market Cap (<$500M = Pennystock-Kategorie)</li>
+                                        <li>Sector Hype (AI, EV, Biotech aktuell hot)</li>
+                                        <li>Catalyst-Events (Earnings, FDA-Approvals, Product Launches)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+                            <p><strong>User Experience:</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Real-Time Dashboard:</strong> Live-Feed der Top 20 "Buzzing Stocks" mit SAS-Score, sortiert nach Momentum</li>
+                                <li><strong>Sector Heat Map:</strong> Visualisierung welche Sektoren gerade hypen (Technologie, Biotech, Crypto-Adjacent)</li>
+                                <li><strong>Signal-Timeline:</strong> Wann wurde der Ticker erstmals auf Reddit erwähnt? Wann erreichte er Twitter-Trending? Wann stieg institutionelles Volumen?</li>
+                                <li><strong>Watchlist-System:</strong> Personalisierte Alerts wenn Aktien in deiner Watchlist einen SAS-Score >70 erreichen</li>
+                            </ul>
+
+                            <p><strong>Differentiator zu Bloomberg/Yahoo Finance:</strong></p>
+                            <p>Bloomberg kostet $24,000/Jahr und fokussiert auf Large Caps. StockPulse fokussiert auf <$5B Market Cap Stocks, die institutionell ignoriert werden, aber Social-Media-driven massive Moves machen.</p>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Der Entwicklungsprozess</h4>
+                            <p><strong>Hypothese & Research:</strong></p>
+                            <p>Die Kernthese basiert auf akademischer Research zu "Herding Behavior" in Retail-Markets (Barber & Odean, 2008) und neueren Studien zu Social-Media-driven Trading (Cookson et al., 2023). Nach Analyse von 50+ WallStreetBets-driven Rallies identifizierte ich wiederkehrende Patterns:</p>
+                            <ul class="custom-list">
+                                <li><strong>Early Signal:</strong> Erste Posts auf WSB mit detaillierter DD (Due Diligence)</li>
+                                <li><strong>Acceleration:</strong> Cross-Platform Spread zu Twitter/StockTwits (6-24h später)</li>
+                                <li><strong>Volume Spike:</strong> Handelsvolumen steigt um 500-2000%</li>
+                                <li><strong>Mainstream:</strong> CNBC/Bloomberg Coverage (zu spät für maximale Gains)</li>
+                            </ul>
+
+                            <p><strong>Technische Architektur:</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Frontend:</strong> Next.js 15 mit App Router (React Server Components für Performance), Tailwind CSS für Styling, Recharts für interaktive Charts, Framer Motion für Micro-Interactions</li>
+                                <li><strong>Backend:</strong> Supabase (PostgreSQL) für User-Management, Watchlists und historische Sentiment-Daten</li>
+                                <li><strong>Data Pipeline:</strong> 
+                                    <ul style="list-style: disc; margin: 0.5rem 0 0.5rem 1.5rem;">
+                                        <li>Reddit API (PRAW) für r/wallstreetbets, r/pennystocks Scraping</li>
+                                        <li>Twitter API v2 für #FinTwit Sentiment</li>
+                                        <li>Alpha Vantage / Finnhub für Stock-Preis-Daten</li>
+                                        <li>Google Trends API für Search Volume Spikes</li>
+                                    </ul>
+                                </li>
+                                <li><strong>SAS-Engine:</strong> Implementiert in TypeScript (src/lib/sasEngine.ts) mit gewichteten Multi-Faktor-Modell. Berechnet Real-Time Scores basierend auf Rolling 24h/7d/30d Windows</li>
+                            </ul>
+
+                            <p><strong>Design Philosophy:</strong></p>
+                            <p>Terminal-Aesthetik inspiriert von Bloomberg Terminal aber modernisiert – Dark Mode, Glassmorphism, Neon-Akzente (Lime Green für Bullish-Signale). Ziel: Professionell genug für serious Traders, aber zugänglich genug für WSB-Retail.</p>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Aktueller Status & Roadmap</h4>
+                            <p><strong>Phase 1: MVP (Current)</strong></p>
+                            <ul class="custom-list">
+                                <li>✅ Vollständiges Frontend (Landing Page, Dashboard, Stock Detail Pages)</li>
+                                <li>✅ SAS-Engine Implementierung mit Mock-Data</li>
+                                <li>✅ User Authentication Flow (Supabase)</li>
+                                <li>✅ Responsive Design (Mobile-optimiert)</li>
+                                <li>⚠️ Currently using Mock Data (Real API integration pending)</li>
+                            </ul>
+
+                            <p><strong>Phase 2: Data Integration (In Progress)</strong></p>
+                            <ul class="custom-list">
+                                <li>Live Reddit Sentiment Analysis (r/wallstreetbets, r/pennystocks)</li>
+                                <li>Twitter/X Sentiment Scraping (#FinTwit)</li>
+                                <li>Real-time Stock Price Data (Alpha Vantage integration)</li>
+                                <li>Google Trends API für Search Volume Tracking</li>
+                                <li>Historical Backtesting (wie accurate war SAS-Score bei predicting past rallies?)</li>
+                            </ul>
+
+                            <p><strong>Phase 3: Advanced Features (Planned)</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Alert System:</strong> Push Notifications wenn Watchlist-Aktien SAS >75 erreichen</li>
+                                <li><strong>Screener:</strong> Filterbare Tabelle (Market Cap, Sector, SAS-Score, Short Interest)</li>
+                                <li><strong>Backtesting Dashboard:</strong> "Wenn du GME bei SAS=80 gekauft hättest... +340% in 14 Tagen"</li>
+                                <li><strong>Community Features:</strong> User können eigene DD posten, anderen Watchlists folgen</li>
+                                <li><strong>Whale-Tracker:</strong> Unusual Options Activity Detection</li>
+                            </ul>
+
+                            <p><strong>Phase 4: Monetization (Long-term)</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Free Tier:</strong> Basic Dashboard, delayed Signals (15min delay)</li>
+                                <li><strong>Pro Tier ($19/month):</strong> Real-time Signals, Advanced Screener, Email Alerts</li>
+                                <li><strong>Institutional API ($499/month):</strong> Hedge Funds/Prop Trading Firms können SAS-Scores via API abfragen</li>
+                            </ul>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Tech Stack (Detailliert)</h4>
+                            <p><strong>Frontend:</strong></p>
+                            <ul class="custom-list">
+                                <li>Next.js 15 (App Router, React Server Components)</li>
+                                <li>TypeScript (Type-Safe Data Handling)</li>
+                                <li>Tailwind CSS (Utility-First Styling)</li>
+                                <li>Recharts (Interactive Charts mit D3.js Backend)</li>
+                                <li>Framer Motion (GPU-Accelerated Animations)</li>
+                            </ul>
+
+                            <p><strong>Backend & Database:</strong></p>
+                            <ul class="custom-list">
+                                <li>Supabase (PostgreSQL + Auth + Real-time Subscriptions)</li>
+                                <li>Row-Level Security für User Data Isolation</li>
+                                <li>Database Migrations als Code (supabase_migration.sql)</li>
+                            </ul>
+
+                            <p><strong>APIs & Data Sources:</strong></p>
+                            <ul class="custom-list">
+                                <li>Reddit API (PRAW Library)</li>
+                                <li>Twitter API v2 (Sentiment Analysis)</li>
+                                <li>Alpha Vantage / Finnhub (Stock Data)</li>
+                                <li>Google Trends (pytrends Library)</li>
+                            </ul>
+
+                            <p><strong>Deployment:</strong></p>
+                            <ul class="custom-list">
+                                <li>Vercel (Next.js Hosting mit Edge Functions)</li>
+                                <li>Supabase Cloud (Managed PostgreSQL)</li>
+                                <li>CI/CD Pipeline via GitHub Actions</li>
+                            </ul>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Key Learnings</h4>
+                            <p><strong>Data Quality > Data Quantity:</strong></p>
+                            <p>Initial versuchte ich alle Social-Media-Plattformen zu tracken (TikTok, Instagram, LinkedIn). Problem: 90% Noise. Reddit + Twitter + StockTwits haben die höchste Signal-to-Noise Ratio für Stock-Sentiment. Fokus auf diese drei Platforms hat accuracy massiv verbessert.</p>
+
+                            <p><strong>Real-Time vs. Historical Trade-off:</strong></p>
+                            <p>Echte Real-Time Sentiment (Live-Streaming von Reddit/Twitter) ist technisch machbar aber teuer (Twitter API Pricing). Entscheidung: 5-Minuten delayed Updates sind für 95% der Use Cases ausreichend – nur institutionelle Trader brauchen sub-second data.</p>
+
+                            <p><strong>Overfitting-Risk bei Backtesting:</strong></p>
+                            <p>Wenn du den SAS-Algorithmus auf historical GME-Rally optimierst, funktioniert er perfekt für GME – aber versagt bei AMC oder BBBY. Lösung: Training auf 50+ verschiedene Rallies mit Cross-Validation, um Overfitting zu vermeiden.</p>
+
+                            <p><strong>UX für Retail vs. Institutional:</strong></p>
+                            <p>Retail-User wollen einfache Signals ("Buy/Hold/Sell"). Institutional-User wollen Raw-Data für eigene Models. Lösung: Zwei UI-Modes – "Simple View" vs. "Advanced Terminal View".</p>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Das große Bild</h4>
+                            <p>StockPulse ist kein Get-Rich-Quick Tool. Es ist ein Research-Terminal für die neue Generation von Data-Driven Retail-Investoren, die verstehen, dass Social Momentum ein quantifizierbares Signal ist.</p>
+
+                            <p><strong>Die Vision:</strong></p>
+                            <p>In 5 Jahren soll StockPulse das sein, was Bloomberg für Institutionen ist – aber für spekulative Retail-Trader. Ein Terminal, das dir nicht sagt "kaufe Apple weil P/E ist gut", sondern "PLTR hat gerade einen Social Momentum Score von 89 erreicht, Reddit-Posts sind um 340% gestiegen in den letzten 6h, historisch führt das zu durchschnittlich +47% in 72h".</p>
+
+                            <p><strong>Die Realität:</strong></p>
+                            <p>Aktuell ist es ein funktionierendes MVP mit beeindruckendem Frontend und solider technischer Foundation. Der nächste Step ist Data Integration – real APIs statt Mock Data. Dann Backtesting um zu beweisen, dass der SAS-Score tatsächlich predictive power hat.</p>
+
+                            <p><strong>Das Portfolio-Argument:</strong></p>
+                            <p>Dieses Projekt zeigt:</p>
+                            <ul class="custom-list">
+                                <li>✅ Full-Stack Development (Next.js, Supabase, TypeScript)</li>
+                                <li>✅ Data Engineering (API Integration, Sentiment Analysis)</li>
+                                <li>✅ Quantitative Modeling (SAS-Engine Multi-Faktor Scoring)</li>
+                                <li>✅ Product Thinking (Identified Market Gap, Built Solution)</li>
+                                <li>✅ UI/UX Design (Terminal Aesthetics, Responsive Design)</li>
+                            </ul>
+                            <p>Es ist nicht "nur eine Website" – es ist ein vollständiges Investment-Research-Tool mit proprietärem Algorithmus.</p>
+
+                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
+
+                            <h4>Ehrliche Limitation</h4>
+                            <p><strong>Was StockPulse NICHT ist:</strong></p>
+                            <ul class="custom-list">
+                                <li>Kein Financial Advice (Legal Disclaimer)</li>
+                                <li>Keine Garantie für Profits (Spekulation = Risiko)</li>
+                                <li>Nicht für Buy-and-Hold Investoren (Fokus auf <30d Holds)</li>
+                                <li>Nicht reguliert als Financial Service (aktuell Research Tool)</li>
+                            </ul>
+
+                            <p><strong>Was es IST:</strong></p>
+                            <p>Ein Tool für Retail-Trader, die Social Momentum als Edge nutzen wollen – mit vollem Bewusstsein, dass spekulatives Trading high-risk ist.</p>
+                        </div>
+
+                        <!-- Image Slideshow -->
+                        <div class="slideshow-container">
+                            <div class="slideshow-track">
+                                <img src="assets/SCR-20260411-rpny.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 1">
+                                <img src="assets/SCR-20260411-rpqv.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 2">
+                                <img src="assets/SCR-20260411-rpvz.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 3">
+                                <!-- Duplicate for seamless loop -->
+                                <img src="assets/SCR-20260411-rpny.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 1">
+                                <img src="assets/SCR-20260411-rpqv.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 2">
+                                <img src="assets/SCR-20260411-rpvz.png" class="slideshow-item" onclick="openLightbox(this.src)" alt="StockPulse Screenshot 3">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-info">
-                    <h3>BizPraktika</h3>
-                    
-                    <p><strong>Das Problem</strong></p>
-                    <p>
-                        Während meiner Praktikumssuchen bin ich auf ein strukturelles Problem gestoßen:
-                        Die Fragmentierung des Recruiting-Marktes macht es extrem ineffizient, relevante Positionen zu finden.
-                    </p>
-                    <p><strong>Die Situation:</strong></p>
-                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Jede Top-Firma nutzt ein anderes Bewerbermanagementsystem (Deloitte → Workday, PwC → eigenes Portal, etc.)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Allgemeine Jobportale wie Indeed oder StepStone haben einen absoluten Overload: Bei einer Suche nach "Consulting Praktikum München" bekommst du 500+ Ergebnisse, aber nur 5-10 sind tatsächlich relevant
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            LinkedIn's Kategorisierung zwischen Praktikum, Werkstudent und Vollzeit ist inkonsistent. Es wird einfach gefühlt alles angezeigt.
-                        </li>
-                    </ul>
-                    <p><strong>Das Ergebnis:</strong></p>
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        Studenten verbringen durchschnittlich 6-8 Stunden pro Bewerbungsrunde damit, 10+ verschiedene Karriereportale manuell zu durchsuchen. 
-                        Bei 3-4 Bewerbungsrunden pro Semester sind das 24-32 Stunden reine Suchzeit – Zeit, die besser in Vorbereitung oder Networking investiert werden könnte.
-                    </p>
 
-                    <p><strong>Die Lösung</strong></p>
-                    <p>
-                        BizPraktika ist eine spezialisierte Aggregationsplattform für Premium Business-Praktika in der DACH-Region. 
-                        Die Plattform löst das Fragmentierungsproblem durch kuratierte Konsolidierung.
-                    </p>
-                    <p><strong>Kern-Features:</strong></p>
-                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Multi-Dimensional Filtering:</strong> Track-basiertes Filtersystem (Big4, MBB, Investment Banking, Corporate) kombiniert mit Spezialisierung (Finance, Consulting, Operations) und geografischen Filtern
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Quality-First Approach:</strong> Fokus auf die Top 40-50 Praktika statt 1000+ irrelevante Listings. Jede Position wird manuell auf Relevanz geprüft
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Career Path Intelligence:</strong> Integrierte Track-Erklärungen zeigen, wie sich verschiedene Praktika in langfristige Karrierewege einfügen (z.B. Big4 Audit → Senior Consultant → Manager → Exit Options)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Real-Time Availability:</strong> Monatliche Updates stellen sicher, dass alle Listings aktuell und verfügbar sind
-                        </li>
-                    </ul>
-                    <p><strong>User Impact:</strong> Reduziert die Suchzeit von 6-8 Stunden auf ca. 15-20 Minuten pro Bewerbungsrunde – eine Zeitersparnis von ca. 90%.</p>
-
-                    <p style="margin-top: 1.5rem;"><strong>Der Entwicklungsprozess</strong></p>
-                    <p><strong>Strategische Entscheidung:</strong></p>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                        Nach einem Kosten-Nutzen-Vergleich zwischen automatisiertem Scraping und manueller Kuration habe ich mich für einen <strong>Quality-First Approach</strong> entschieden.
-                    </p>
-                    <p><strong>Technische Implementierung:</strong></p>
-                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Frontend-Architektur:</strong> Vanilla JavaScript (bewusste Entscheidung gegen Framework-Overhead)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>Datenstruktur:</strong> JSON-basiertes Schema mit Array-Handling für Multi-Select Filtering
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            <strong>UI/UX:</strong> Glassmorphism Design mit 3D Transform Effects und CSS-optimierten Animationen
-                        </li>
-                    </ul>
-
-                    <p><strong>Key Learnings</strong></p>
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        Technische Komplexität ist nicht gleich User Value. Ein manuell kuratiertes System mit 50 hochrelevanten Einträgen löst das Problem besser als ein automatisiertes System mit hohem Rauschen.
-                    </p>
-
-                    <div class="tech-tags">
-                        <span class="tag">Vanilla JavaScript</span>
-                        <span class="tag">JSON-Data</span>
-                        <span class="tag">Glassmorphism UI</span>
-                        <span class="tag">Responsive Design</span>
+                <!-- BizPraktika -->
+                <div id="bizpraktika" class="project-card vertical">
+                    <div class="project-image-placeholder">
+                        <img src="assets/bizpraktika_main.jpeg" alt="BizPraktika Dashboard">
                     </div>
-                    <div class="project-links">
-                        <a href="https://bizpraktika.app" target="_blank" class="project-link">
-                            → bizpraktika.app
-                        </a>
+                    <div class="project-info">
+                        <h3>BizPraktika</h3>
+                        
+                        <div class="project-description">
+                            <h4>Das Problem</h4>
+                            <p>Während meiner Praktikumssuchen bin ich auf ein strukturelles Problem gestoßen: Die Fragmentierung des Recruiting-Marktes macht es extrem ineffizient, relevante Positionen zu finden.</p>
+                            
+                            <p><strong>Die Situation:</strong></p>
+                            <ul class="custom-list">
+                                <li>Jede Top-Firma nutzt ein anderes Bewerbermanagementsystem (Deloitte → Workday, PwC → eigenes Portal, etc.)</li>
+                                <li>Allgemeine Jobportale wie Indeed oder StepStone haben einen absoluten Overload: Bei einer Suche nach "Consulting Praktikum München" bekommst du 500+ Ergebnisse, aber nur 5-10 sind tatsächlich relevant</li>
+                                <li>LinkedIn's Kategorisierung zwischen Praktikum, Werkstudent und Vollzeit ist inkonsistent. Es wird einfach gefühlt alles angezeigt.</li>
+                            </ul>
+
+                            <p><strong>Das Ergebnis:</strong></p>
+                            <p>Studenten verbringen durchschnittlich 6-8 Stunden pro Bewerbungsrunde damit, 10+ verschiedene Karriereportale manuell zu durchsuchen. Bei 3-4 Bewerbungsrunden pro Semester sind das 24-32 Stunden reine Suchzeit – Zeit, die besser in Vorbereitung oder Networking investiert werden könnte.</p>
+
+                            <p><strong>Die Lösung</strong></p>
+                            <p>BizPraktika ist eine spezialisierte Aggregationsplattform für Premium Business-Praktika in der DACH-Region. Die Plattform löst das Fragmentierungsproblem durch kuratierte Konsolidierung.</p>
+
+                            <p><strong>Kern-Features:</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Multi-Dimensional Filtering:</strong> Track-basiertes Filtersystem (Big4, MBB, Investment Banking, Corporate) kombiniert mit Spezialisierung (Finance, Consulting, Operations) und geografischen Filtern</li>
+                                <li><strong>Quality-First Approach:</strong> Fokus auf die Top 40-50 Praktika statt 1000+ irrelevante Listings. Jede Position wird manuell auf Relevanz geprüft</li>
+                                <li><strong>Career Path Intelligence:</strong> Integrierte Track-Erklärungen zeigen, wie sich verschiedene Praktika in langfristige Karrierewege einfügen (z.B. Big4 Audit → Senior Consultant → Manager → Exit Options)</li>
+                                <li><strong>Real-Time Availability:</strong> Monatliche Updates stellen sicher, dass alle Listings aktuell und verfügbar sind</li>
+                            </ul>
+
+                            <p><strong>User Impact:</strong> Reduziert die Suchzeit von 6-8 Stunden auf ca. 15-20 Minuten pro Bewerbungsrunde – eine Zeitersparnis von ca. 90%.</p>
+
+                            <p><strong>Der Entwicklungsprozess</strong></p>
+                            <p><strong>Strategische Entscheidung:</strong></p>
+                            <p>Nach einem Kosten-Nutzen-Vergleich zwischen automatisiertem Scraping und manueller Kuration habe ich mich für einen Quality-First Approach entschieden.</p>
+
+                            <p><strong>Technische Implementierung:</strong></p>
+                            <ul class="custom-list">
+                                <li><strong>Frontend-Architektur:</strong> Vanilla JavaScript (bewusste Entscheidung gegen Framework-Overhead)</li>
+                                <li><strong>Datenstruktur:</strong> JSON-basiertes Schema mit Array-Handling für Multi-Select Filtering</li>
+                                <li><strong>UI/UX:</strong> Glassmorphism Design mit 3D Transform Effects und CSS-optimierten Animationen</li>
+                            </ul>
+
+                            <p><strong>Key Learnings</strong></p>
+                            <p>Technische Komplexität ist nicht gleich User Value. Ein manuell kuratiertes System mit 50 hochrelevanten Einträgen löst das Problem besser als ein automatisiertes System mit hohem Rauschen.</p>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span class="tag">Vanilla JavaScript</span>
+                            <span class="tag">JSON-Data</span>
+                            <span class="tag">Glassmorphism UI</span>
+                            <span class="tag">Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://bizpraktika.app" target="_blank" class="project-link">→ bizpraktika.app</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Bachelor Thesis</h3>
-                    <p><strong>Do Company Insiders Beat the Market?</strong></p>
-                    <p><strong>Quantitative Analysis of Insider Trading in Germany</strong></p>
-                    <p>
-                        When executives buy or sell their own company's stock, does it predict future 
-                        price movements? I analyzed over 2,000 insider transactions to find out.
-                    </p>
-                    <p><strong>What I Did:</strong><br>
-                        Built a complete event study framework in Python to measure market reactions 
-                        to insider trading disclosures at Germany's largest companies (DAX & MDAX).
-                    </p>
-                    <p><strong>What I Found:</strong></p>
-                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Markets react <strong>positively</strong> to insider purchases (+0.33% abnormal return, highly significant)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Markets react <strong>negatively</strong> to insider sales (-0.61% abnormal return, highly significant)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            These patterns contradict the semi-strong Efficient Market Hypothesis
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Supervisory board members' trades carry <strong>stronger signals</strong> than executive trades
-                        </li>
-                    </ul>
-                    <p><strong>Technical Implementation:</strong></p>
-                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Web-scraped 2,078 insider transactions from regulatory filings (2018-2024)
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Collected historical price data for 90 German stocks
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Implemented Fama-French 3-Factor Model from scratch in Python
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
-                            Conducted statistical significance tests and robustness checks
-                        </li>
-                    </ul>
-                    <p><strong>Impact:</strong> The findings suggest exploitable market inefficiencies around insider trading disclosures in Germany.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Pandas</span>
-                        <span class="tag">NumPy</span>
-                        <span class="tag">Statsmodels</span>
-                        <span class="tag">Financial Econometrics</span>
+                <!-- Bachelor Thesis -->
+                <div id="thesis" class="project-card">
+                    <div class="project-info">
+                        <h3>Bachelor Thesis</h3>
+                        <div class="project-description">
+                            <p><strong>Do Company Insiders Beat the Market?</strong></p>
+                            <p><strong>Quantitative Analysis of Insider Trading in Germany</strong></p>
+                            
+                            <p>When executives buy or sell their own company's stock, does it predict future price movements? I analyzed over 2,000 insider transactions to find out.</p>
+                            
+                            <p><strong>What I Did:</strong></p>
+                            <p>Built a complete event study framework in Python to measure market reactions to insider trading disclosures at Germany's largest companies (DAX & MDAX).</p>
+                            
+                            <p><strong>What I Found:</strong></p>
+                            <ul class="custom-list">
+                                <li>Markets react <strong>positively</strong> to insider purchases (+0.33% abnormal return, highly significant)</li>
+                                <li>Markets react <strong>negatively</strong> to insider sales (-0.61% abnormal return, highly significant)</li>
+                                <li>These patterns contradict the semi-strong Efficient Market Hypothesis</li>
+                                <li>Supervisory board members' trades carry <strong>stronger signals</strong> than executive trades</li>
+                            </ul>
+
+                            <p><strong>Technical Implementation:</strong></p>
+                            <ul class="custom-list">
+                                <li>Web-scraped 2,078 insider transactions from regulatory filings (2018-2024)</li>
+                                <li>Collected historical price data for 90 German stocks</li>
+                                <li>Implemented Fama-French 3-Factor Model from scratch in Python</li>
+                                <li>Conducted statistical significance tests and robustness checks</li>
+                            </ul>
+                            
+                            <p><strong>Impact:</strong> The findings suggest exploitable market inefficiencies around insider trading disclosures in Germany.</p>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">Statsmodels</span>
+                            <span class="tag">Financial Econometrics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/tobzwil89/bachelor_thesis" target="_blank" class="project-link">→ GitHub Repository</a>
+                            <a href="#" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Request Thesis</a>
+                        </div>
                     </div>
-                    <div class="project-links" style="align-items: center;">
-                        <a href="https://github.com/tobzwil89/bachelor_thesis" target="_blank" class="project-link">
-                            → GitHub Repository
-                        </a>
-                        <span style="color: var(--text-secondary);">|</span>
-                        <a href="mailto:tobias@example.com?subject=Request%20for%20BA%20Thesis&body=Hi%20Tobias,%0D%0A%0D%0AI%20would%20like%20to%20request%20access%20to%20your%20Bachelor%20thesis%20on%20Directors'%20Dealings.%0D%0A%0D%0AName:%20%0D%0ACompany:%20%0D%0APurpose:%20" 
-                           class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; margin-left: 0.5rem; background: var(--gradient-primary); color: white; border-radius: 6px; text-decoration: none; display: inline-block;">
-                          📧 Request Thesis
-                        </a>
+                    <div class="project-image-placeholder" style="border: none; background: none; max-width: 300px;">
+                        <img src="assets/bizpraktika_BA.png" alt="Bachelorarbeit Deckblatt" style="width: 100%; height: auto; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     </div>
-                </div>
-                <div class="project-image-placeholder" style="border: none; background: none;">
-                    <img src="assets/bizpraktika_BA.png" alt="Bachelorarbeit Deckblatt" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 </div>
             </div>
         </div>
@@ -1085,36 +1512,24 @@
         .linkedin-icon-link:hover img {
             transform: scale(1.1);
         }
-        
-        /* BizPraktika Image Display Fix */
-        .project-card.full-image {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        
-        .project-card.full-image .project-image-placeholder {
-            flex: none;
-            width: 100%;
-            height: auto;
-            aspect-ratio: auto;
-            margin-bottom: 2rem;
-            border: none;
-            background: none;
-        }
-        
-        .project-card.full-image .project-image-placeholder img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .project-card.full-image .project-info {
-            width: 100%;
-        }
     </style>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+
     <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Disable scroll
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scroll
+        }
+
         // Smooth navigation
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
@@ -1158,6 +1573,43 @@
             }
             
             lastScroll = currentScroll;
+        });
+
+        // Project Navigation Active State
+        const projectNavLinks = document.querySelectorAll('.projects-nav a');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+            projectCards.forEach(card => {
+                const cardTop = card.offsetTop;
+                const cardHeight = card.clientHeight;
+                if (window.pageYOffset >= (cardTop - 200)) {
+                    current = card.getAttribute('id');
+                }
+            });
+
+            projectNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for project links
+        projectNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
