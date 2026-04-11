@@ -744,8 +744,6 @@
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#cv" class="nav-link">CV</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -762,11 +760,14 @@
                 Diese Website ist entstanden, weil vieles von dem, was ich in meiner 
                 Freizeit mache und lerne, nicht wirklich auf einen klassischen 
                 Lebenslauf passen. Hier findest du ein paar Projekte und Dinge,
-                die mich beschäftigen.
+                die mich beschäftigen. Die Website ist ein absolutes Nebenprojekt, also erwartet bitte nicht, dass alles perfekt ist :D.
             </p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">Projekte ansehen</a>
-                <a href="#contact" class="btn btn-secondary">Kontakt</a>
+                <a href="#projects" class="btn btn-primary nav-link">Projekte ansehen</a>
+                <a href="#cv" class="btn btn-secondary nav-link">CV</a>
+                <a href="https://www.linkedin.com/in/tobiaszwilling/" target="_blank" class="linkedin-icon-link">
+                    <img src="assets/LinkedIn_icon.svg.png" alt="LinkedIn" style="height: 45px; width: auto; vertical-align: middle; transition: transform 0.3s ease;">
+                </a>
             </div>
         </div>
         <div class="home-image">
@@ -780,10 +781,13 @@
     <section id="projects">
         <div class="section-header">
             <h2>Ausgewählte <span class="gradient-text">Projekte</span></h2>
-            <p>Praxisnahe Projekte, die meine technischen Fähigkeiten demonstrieren</p>
+            <p></p>
         </div>
         <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card full-image">
+                <div class="project-image-placeholder">
+                    <img src="assets/bizpraktika_main.jpeg" alt="BizPraktika Dashboard">
+                </div>
                 <div class="project-info">
                     <h3>BizPraktika</h3>
                     
@@ -876,9 +880,6 @@
                             → bizpraktika.app
                         </a>
                     </div>
-                </div>
-                <div class="project-image-placeholder" style="border: none; background: none;">
-                    <img src="assets/bizpraktika_main.jpeg" alt="BizPraktika Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 </div>
             </div>
 
@@ -1079,83 +1080,40 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-header">
-            <h2>Über <span class="gradient-text">mich</span></h2>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    Während meines BWL-Studiums habe ich gemerkt, dass mich die 
-                    technische Seite von Business mindestens genauso interessiert 
-                    wie die klassischen BWL-Themen. 
-                </p>
-                <p>
-                    Ich verbringe viel Zeit damit, zu lernen wie man mit Python 
-                    Daten analysiert, wie man Prozesse automatisiert, oder wie 
-                    bestimmte Technologien funktionieren. Gleichzeitig beschäftige 
-                    ich mich mit Finanzmärkten und versuche, beide Welten zu verbinden.
-                </p>
-                <p>
-                    Diese Website ist im Prinzip ein Ort, wo ich zeigen kann, was ich 
-                    so nebenbei mache – ohne den ganzen LinkedIn-Corporate-Speak.
-                </p>
-            </div>
-            <div class="interests-grid">
-                <div class="interest-item">
-                    <h4>
-                        Tech & Programmierung
-                    </h4>
-                    <p>
-                        Von Python-Scripts bis zu Web-Development – ich probiere gerne 
-                        neue Technologien aus und baue kleine Tools, die mir (oder anderen) 
-                        das Leben einfacher machen.
-                    </p>
-                </div>
-                <div class="interest-item">
-                    <h4>
-                        Finanzmärkte & Investieren
-                    </h4>
-                    <p>
-                        Ich interessiere mich für Aktien, Optionen und wie Märkte 
-                        funktionieren. Manchmal kombiniere ich das mit Programming, 
-                        z.B. für Datenanalysen oder automatisierte Auswertungen.
-                    </p>
-                </div>
-                <div class="interest-item">
-                    <h4>
-                        Lernen & Ausprobieren
-                    </h4>
-                    <p>
-                        Ob Online-Kurse, Bücher oder einfach Learning by Doing – ich 
-                        lerne am liebsten, indem ich Dinge selbst baue und dabei 
-                        verstehe, wie sie funktionieren.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
-    <section id="contact">
-        <h2>Lass uns <span class="gradient-text">vernetzen</span></h2>
-        <p>
-            Ob für Projektkooperationen, Job-Opportunities oder einfach 
-            zum Austausch über Tech und Business – ich freue mich auf deine Nachricht!
-        </p>
-        <div class="contact-methods">
-            <a href="https://www.linkedin.com/in/tobiaszwilling/" target="_blank" class="contact-card">
-                <h3>LinkedIn</h3>
-                <p>/in/tobiaszwilling</p>
-            </a>
-            <a href="https://github.com/tobzwil89" target="_blank" class="contact-card">
-                <h3>GitHub</h3>
-                <p>@tobzwil89</p>
-            </a>
-        </div>
-    </section>
-
+    <style>
+        .linkedin-icon-link:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* BizPraktika Image Display Fix */
+        .project-card.full-image {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .project-card.full-image .project-image-placeholder {
+            flex: none;
+            width: 100%;
+            height: auto;
+            aspect-ratio: auto;
+            margin-bottom: 2rem;
+            border: none;
+            background: none;
+        }
+        
+        .project-card.full-image .project-image-placeholder img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .project-card.full-image .project-info {
+            width: 100%;
+        }
+    </style>
     <script>
         // Smooth navigation
         const navLinks = document.querySelectorAll('.nav-link');
