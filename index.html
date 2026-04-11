@@ -325,8 +325,8 @@
         }
 
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
         }
 
@@ -338,6 +338,36 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .project-info {
+            flex: 7;
+        }
+
+        .project-image-placeholder {
+            flex: 3;
+            aspect-ratio: 1 / 1.414; /* DIN A4 ratio */
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px dashed var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image-placeholder::after {
+            content: 'BA 1. Seite';
+            font-weight: 500;
         }
 
         .project-card::before {
@@ -626,6 +656,21 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .project-card {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .project-info, .project-image-placeholder {
+                flex: none;
+                width: 100%;
+            }
+
+            .project-image-placeholder {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
             #home {
                 flex-direction: column-reverse;
                 text-align: center;
@@ -699,7 +744,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">YourName</div>
+            <div class="logo"></div>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -715,11 +760,14 @@
         <div class="home-content">
             <div class="greeting">Hi, ich bin</div>
             <h1>Tobias Zwilling</h1>
-            <h2>Student & <span class="gradient-text">Tech Enthusiast</span></h2>
             <p>
-                Ich verbinde Business-Expertise mit technischen Skills. 
-                Von Python-Entwicklung bis hin zu Datenanalyse – ich zeige, 
-                dass BWLer mehr können als Excel-Tabellen.
+                Hallo, mein Name ist Tobias. Ich studiere BWL und interessiere mich 
+                nebenbei sehr für Tech, Daten und den Aktienmarkt. 
+                
+                Diese Website ist entstanden, weil vieles von dem, was ich in meiner 
+                Freizeit mache und lerne, nicht wirklich auf einen klassischen 
+                Lebenslauf passt. Hier findest du ein paar Projekte und Dinge, 
+                die mich beschäftigen.
             </p>
             <div class="cta-buttons">
                 <a href="#projects" class="btn btn-primary">Projekte ansehen</a>
@@ -741,65 +789,76 @@
         </div>
         <div class="projects-grid">
             <div class="project-card">
-                <h3>Financial Dashboard</h3>
-                <p>
-                    Ein interaktives Dashboard zur Analyse von Finanzdaten mit Python, 
-                    Pandas und Plotly. Automatisierte Datenverarbeitung und Visualisierung.
-                </p>
-                <div class="tech-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Pandas</span>
-                    <span class="tag">Plotly</span>
-                    <span class="tag">Streamlit</span>
+                <div class="project-info">
+                    <h3>Bachelor Thesis</h3>
+                    <p><strong>Do Company Insiders Beat the Market?</strong></p>
+                    <p><strong>Quantitative Analysis of Insider Trading in Germany</strong></p>
+                    <p>
+                        When executives buy or sell their own company's stock, does it predict future 
+                        price movements? I analyzed over 2,000 insider transactions to find out.
+                    </p>
+                    <p><strong>What I Did:</strong><br>
+                        Built a complete event study framework in Python to measure market reactions 
+                        to insider trading disclosures at Germany's largest companies (DAX & MDAX).
+                    </p>
+                    <p><strong>What I Found:</strong></p>
+                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Markets react <strong>positively</strong> to insider purchases (+0.33% abnormal return, highly significant)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Markets react <strong>negatively</strong> to insider sales (-0.61% abnormal return, highly significant)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            These patterns contradict the semi-strong Efficient Market Hypothesis
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Supervisory board members' trades carry <strong>stronger signals</strong> than executive trades
+                        </li>
+                    </ul>
+                    <p><strong>Technical Implementation:</strong></p>
+                    <ul style="list-style: none; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Web-scraped 2,078 insider transactions from regulatory filings (2018-2024)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Collected historical price data for 90 German stocks
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Implemented Fama-French 3-Factor Model from scratch in Python
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">▹</span>
+                            Conducted statistical significance tests and robustness checks
+                        </li>
+                    </ul>
+                    <p><strong>Impact:</strong> The findings suggest exploitable market inefficiencies around insider trading disclosures in Germany.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Statsmodels</span>
+                        <span class="tag">Financial Econometrics</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tobzwil89/bachelor_thesis" target="_blank" class="project-link">
+                            → GitHub Repository
+                        </a>
+                        <span style="color: var(--text-secondary);">|</span>
+                        <a href="https://www.dropbox.com/scl/fi/ulcu58gwj70hyij2a64a1/BA-geschw-rzt-f-r-Website.pdf?rlkey=6qrevk4ai4ea5jb6aji2ztu48&st=fjr45ili&dl=0" target="_blank" class="project-link">
+                            → Full Thesis
+                        </a>
+                    </div>
                 </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">
-                        → GitHub
-                    </a>
-                    <a href="#" class="project-link">
-                        → Live Demo
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>Market Analysis Tool</h3>
-                <p>
-                    Web Scraping und Sentiment-Analyse von Marktdaten. 
-                    Automatische Reports und Visualisierungen für Investitionsentscheidungen.
-                </p>
-                <div class="tech-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">BeautifulSoup</span>
-                    <span class="tag">NLTK</span>
-                    <span class="tag">SQL</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">
-                        → GitHub
-                    </a>
-                    <a href="#" class="project-link">
-                        → Details
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>Business Process Automation</h3>
-                <p>
-                    Automatisierung von repetitiven Business-Prozessen mit Python. 
-                    Reduzierung manueller Arbeit um 70% durch intelligente Scripts.
-                </p>
-                <div class="tech-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Selenium</span>
-                    <span class="tag">APIs</span>
-                    <span class="tag">Excel</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">
-                        → GitHub
-                    </a>
+                <div class="project-image-placeholder" style="border: none; background: none;">
+                    <img src="/var/folders/2r/534zr8151411t_stp79zj9tw0000gn/T/ai-chat-attachment-2513129291181655979.png" alt="Bachelorarbeit Deckblatt" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 </div>
             </div>
         </div>
@@ -812,69 +871,112 @@
         </div>
         <div class="cv-container">
             <div class="cv-section">
-                <h3>Ausbildung</h3>
+                <h3>Work Experience</h3>
+                
                 <div class="cv-item">
-                    <h4>Bachelor of Science - Betriebswirtschaftslehre</h4>
-                    <div class="cv-meta">Universität XYZ | 2021 - 2025</div>
+                    <h4>Growth Strategy Intern</h4>
+                    <div class="cv-meta">Enpal | Berlin, DE | September 2025 to January 2026</div>
                     <ul>
-                        <li>Schwerpunkte: Finance, Digital Business, Data Analytics</li>
-                        <li>Relevante Kurse: Python for Business, Statistics, Machine Learning</li>
-                        <li>GPA: X.X</li>
+                        <li>Collaborated with former MBB consultants on commercial growth strategy, evaluating business model scalability and market expansion opportunities</li>
+                        <li>Built Python-based segmentation models analyzing customer data to for strategic prioritization</li>
+                        <li>Evaluated market entry strategies through sizing analyses and business case development</li>
+                        <li>Conducted market and business model analyses to identify and prioritize growth opportunities</li>
+                        <li>Worked independently on ambiguous problem statements, translating complex analyses into actionable recommendations under tight deadlines in a fast-paced growth environment</li>
+                    </ul>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Strategy Development and Inhouse Consulting Intern</h4>
+                    <div class="cv-meta">TeamBank AG | Nuremberg, DE | March 2025 to July 2025</div>
+                    <ul>
+                        <li>Prepared strategic analyses and insights for the executive board and senior stakeholders</li>
+                        <li>Conducted comprehensive market and competitor analyses across the consumer finance sector</li>
+                        <li>Benchmarked 27 international fintechs, delivering insights that influenced the new strategic roadmap and supported trend analysis, forecasting, acquisitions and innovation management</li>
+                    </ul>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Audit Intern</h4>
+                    <div class="cv-meta">PwC | Munich, DE | October 2024 to December 2024</div>
+                    <ul>
+                        <li>Consolidated audits for a large retail client with revenues of over €22 billion</li>
+                        <li>Proactively mapped business processes for 2 key subsidiaries for understanding risk exposure</li>
+                    </ul>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Business Guidance Working Student</h4>
+                    <div class="cv-meta">TenneT TSO | Bayreuth, DE | February 2023 to January 2024</div>
+                    <ul>
+                        <li>Supported technical leadership in decision-making, facilitating coordination across 3 departments</li>
+                        <li>Contributed to the initiation of 5+ infrastructure projects worth over €50M in total investment</li>
+                        <li>Provided analytical support for PMO activities across 5+ large-scale infrastructure projects</li>
                     </ul>
                 </div>
             </div>
 
             <div class="cv-section">
-                <h3>Berufserfahrung</h3>
+                <h3>Education</h3>
+                
                 <div class="cv-item">
-                    <h4>Praktikant Business Analytics</h4>
-                    <div class="cv-meta">Unternehmen ABC | Jun 2024 - Sep 2024</div>
+                    <h4>Master’s in Management M.Sc.</h4>
+                    <div class="cv-meta">Nova School of Business and Economics | Lisbon, PT | January 2026 to May 2027</div>
                     <ul>
-                        <li>Entwicklung von Python-Scripts zur Datenanalyse und Automatisierung</li>
-                        <li>Erstellung von Dashboards und Reports für C-Level Management</li>
-                        <li>Implementierung eines ML-Modells zur Umsatzprognose</li>
+                        <li>Planning to specialize in Strategy and Digital Business</li>
+                        <li>M.M. ranked #1 Portugal and #4 globally (Financial Times 2025)</li>
                     </ul>
                 </div>
 
                 <div class="cv-item">
-                    <h4>Werkstudent Consulting</h4>
-                    <div class="cv-meta">Beratung XYZ | Okt 2023 - Mai 2024</div>
+                    <h4>Bachelor of Business Administration B.Sc.</h4>
+                    <div class="cv-meta">University of Bayreuth | Bayreuth, DE | October 2021 to December 2025</div>
                     <ul>
-                        <li>Unterstützung bei Strategieprojekten im Tech-Sektor</li>
-                        <li>Datenanalyse und Visualisierung mit Python und Tableau</li>
-                        <li>Kundenpräsentationen und Workshop-Moderation</li>
+                        <li>Current grade: 1.9 - thesis grade pending (submitted December 2025)</li>
+                        <li>Specialization in Finance & Banking and Production & Logistics</li>
+                    </ul>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Semester Abroad during Bachelors</h4>
+                    <div class="cv-meta">Weber State University | Ogden, Utah, US | January 2024 to May 2024</div>
+                    <ul>
+                        <li>Global Program of the University of Bayreuth</li>
                     </ul>
                 </div>
             </div>
 
             <div class="cv-section">
-                <h3>Skills & Technologien</h3>
+                <h3>Skills & Interests</h3>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h5>Programming</h5>
+                        <h5>Languages</h5>
                         <ul>
-                            <li>Python (Advanced)</li>
+                            <li>German (Native)</li>
+                            <li>English (C1)</li>
+                            <li>Spanish (B1)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Tech Skills</h5>
+                        <ul>
+                            <li>Excel, PowerPoint</li>
+                            <li>Python</li>
+                            <li>Power BI, Tableau</li>
                             <li>SQL</li>
-                            <li>JavaScript</li>
-                            <li>R</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h5>Data & Analytics</h5>
+                        <h5>Scholarships & Volunteer</h5>
                         <ul>
-                            <li>Pandas, NumPy</li>
-                            <li>Scikit-learn</li>
-                            <li>Tableau, PowerBI</li>
-                            <li>Excel (VBA)</li>
+                            <li>Fulbright Germany Scholarship</li>
+                            <li>Studenten bilden Schüler (Tutoring)</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h5>Business</h5>
+                        <h5>Societies & Interests</h5>
                         <ul>
-                            <li>Financial Modeling</li>
-                            <li>Strategy Consulting</li>
-                            <li>Process Optimization</li>
-                            <li>Project Management</li>
+                            <li>Bayreuth Stock Exchange Society</li>
+                            <li>Economics, Hiking, Skiing</li>
                         </ul>
                     </div>
                 </div>
@@ -890,53 +992,50 @@
         <div class="about-content">
             <div class="about-text">
                 <p>
-                    Als BWL-Student mit starker Affinität zur Technologie verbringe ich 
-                    meine Zeit damit, die Lücke zwischen Business und Tech zu schließen. 
-                    Während meine Kommilitonen Excel-Formeln optimieren, baue ich 
-                    Python-Tools, die repetitive Aufgaben automatisieren.
+                    Während meines BWL-Studiums habe ich gemerkt, dass mich die 
+                    technische Seite von Business mindestens genauso interessiert 
+                    wie die klassischen BWL-Themen. 
                 </p>
                 <p>
-                    Meine Leidenschaft liegt darin, technische Lösungen für 
-                    Business-Probleme zu entwickeln. Ob Data Analytics, Process 
-                    Automation oder Web Development – ich liebe es, Dinge zu bauen, 
-                    die tatsächlich einen Mehrwert schaffen.
+                    Ich verbringe viel Zeit damit, zu lernen wie man mit Python 
+                    Daten analysiert, wie man Prozesse automatisiert, oder wie 
+                    bestimmte Technologien funktionieren. Gleichzeitig beschäftige 
+                    ich mich mit Finanzmärkten und versuche, beide Welten zu verbinden.
                 </p>
                 <p>
-                    Wenn ich nicht gerade programmiere oder an Projekten arbeite, 
-                    erkunde ich neue Technologien, reise durch Europa oder optimiere 
-                    meine Workflows mit den neuesten Tools.
+                    Diese Website ist im Prinzip ein Ort, wo ich zeigen kann, was ich 
+                    so nebenbei mache – ohne den ganzen LinkedIn-Corporate-Speak.
                 </p>
             </div>
             <div class="interests-grid">
                 <div class="interest-item">
                     <h4>
-                        <span class="interest-icon">🚀</span>
-                        Tech & Innovation
+                        Tech & Programmierung
                     </h4>
                     <p>
-                        Immer auf der Suche nach den neuesten Trends in AI, 
-                        Web3 und FinTech. Besuche regelmäßig Tech-Konferenzen 
-                        und Hackathons.
+                        Von Python-Scripts bis zu Web-Development – ich probiere gerne 
+                        neue Technologien aus und baue kleine Tools, die mir (oder anderen) 
+                        das Leben einfacher machen.
                     </p>
                 </div>
                 <div class="interest-item">
                     <h4>
-                        <span class="interest-icon">✈️</span>
-                        Reisen & Kulturen
+                        Finanzmärkte & Investieren
                     </h4>
                     <p>
-                        Von Tokyo bis San Francisco – ich liebe es, neue Orte 
-                        zu entdecken und verschiedene Business-Kulturen kennenzulernen.
+                        Ich interessiere mich für Aktien, Optionen und wie Märkte 
+                        funktionieren. Manchmal kombiniere ich das mit Programming, 
+                        z.B. für Datenanalysen oder automatisierte Auswertungen.
                     </p>
                 </div>
                 <div class="interest-item">
                     <h4>
-                        <span class="interest-icon">📚</span>
-                        Kontinuierliches Lernen
+                        Lernen & Ausprobieren
                     </h4>
                     <p>
-                        Online-Kurse, Tech-Bücher und Side-Projects halten mich 
-                        ständig auf dem neuesten Stand der Technologie.
+                        Ob Online-Kurse, Bücher oder einfach Learning by Doing – ich 
+                        lerne am liebsten, indem ich Dinge selbst baue und dabei 
+                        verstehe, wie sie funktionieren.
                     </p>
                 </div>
             </div>
@@ -951,17 +1050,13 @@
             zum Austausch über Tech und Business – ich freue mich auf deine Nachricht!
         </p>
         <div class="contact-methods">
-            <a href="mailto:deine.email@example.com" class="contact-card">
-                <h3>Email</h3>
-                <p>deine.email@example.com</p>
-            </a>
-            <a href="https://linkedin.com/in/deinprofil" target="_blank" class="contact-card">
+            <a href="https://www.linkedin.com/in/tobiaszwilling/" target="_blank" class="contact-card">
                 <h3>LinkedIn</h3>
-                <p>/in/deinprofil</p>
+                <p>/in/tobiaszwilling</p>
             </a>
-            <a href="https://github.com/deinusername" target="_blank" class="contact-card">
+            <a href="https://github.com/tobzwil89" target="_blank" class="contact-card">
                 <h3>GitHub</h3>
-                <p>@deinusername</p>
+                <p>@tobzwil89</p>
             </a>
         </div>
     </section>
