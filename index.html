@@ -1025,7 +1025,6 @@
                         <img src="assets/StockPulse_Main.jpeg" alt="StockPulse Dashboard">
                     </div>
                     <div class="project-info">
-                        <div class="project-tag">New Project</div>
                         <h3>StockPulse</h3>
                         
                         <div class="project-description">
@@ -1174,53 +1173,6 @@
 
                             <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
 
-                            <h4>Tech Stack (Detailliert)</h4>
-                            <p><strong>Frontend:</strong></p>
-                            <ul class="custom-list">
-                                <li>Next.js 15 (App Router, React Server Components)</li>
-                                <li>TypeScript (Type-Safe Data Handling)</li>
-                                <li>Tailwind CSS (Utility-First Styling)</li>
-                                <li>Recharts (Interactive Charts mit D3.js Backend)</li>
-                                <li>Framer Motion (GPU-Accelerated Animations)</li>
-                            </ul>
-
-                            <p><strong>Backend & Database:</strong></p>
-                            <ul class="custom-list">
-                                <li>Supabase (PostgreSQL + Auth + Real-time Subscriptions)</li>
-                                <li>Row-Level Security für User Data Isolation</li>
-                                <li>Database Migrations als Code (supabase_migration.sql)</li>
-                            </ul>
-
-                            <p><strong>APIs & Data Sources:</strong></p>
-                            <ul class="custom-list">
-                                <li>Reddit API (PRAW Library)</li>
-                                <li>Twitter API v2 (Sentiment Analysis)</li>
-                                <li>Alpha Vantage / Finnhub (Stock Data)</li>
-                                <li>Google Trends (pytrends Library)</li>
-                            </ul>
-
-                            <p><strong>Deployment:</strong></p>
-                            <ul class="custom-list">
-                                <li>Vercel (Next.js Hosting mit Edge Functions)</li>
-                                <li>Supabase Cloud (Managed PostgreSQL)</li>
-                                <li>CI/CD Pipeline via GitHub Actions</li>
-                            </ul>
-
-                            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
-
-                            <h4>Key Learnings</h4>
-                            <p><strong>Data Quality > Data Quantity:</strong></p>
-                            <p>Initial versuchte ich alle Social-Media-Plattformen zu tracken (TikTok, Instagram, LinkedIn). Problem: 90% Noise. Reddit + Twitter + StockTwits haben die höchste Signal-to-Noise Ratio für Stock-Sentiment. Fokus auf diese drei Platforms hat accuracy massiv verbessert.</p>
-
-                            <p><strong>Real-Time vs. Historical Trade-off:</strong></p>
-                            <p>Echte Real-Time Sentiment (Live-Streaming von Reddit/Twitter) ist technisch machbar aber teuer (Twitter API Pricing). Entscheidung: 5-Minuten delayed Updates sind für 95% der Use Cases ausreichend – nur institutionelle Trader brauchen sub-second data.</p>
-
-                            <p><strong>Overfitting-Risk bei Backtesting:</strong></p>
-                            <p>Wenn du den SAS-Algorithmus auf historical GME-Rally optimierst, funktioniert er perfekt für GME – aber versagt bei AMC oder BBBY. Lösung: Training auf 50+ verschiedene Rallies mit Cross-Validation, um Overfitting zu vermeiden.</p>
-
-                            <p><strong>UX für Retail vs. Institutional:</strong></p>
-                            <p>Retail-User wollen einfache Signals ("Buy/Hold/Sell"). Institutional-User wollen Raw-Data für eigene Models. Lösung: Zwei UI-Modes – "Simple View" vs. "Advanced Terminal View".</p>
-
                             <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
 
                             <h4>Das große Bild</h4>
@@ -1244,15 +1196,6 @@
                             <p>Es ist nicht "nur eine Website" – es ist ein vollständiges Investment-Research-Tool mit proprietärem Algorithmus.</p>
 
                             <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(0, 217, 255, 0.1);">
-
-                            <h4>Ehrliche Limitation</h4>
-                            <p><strong>Was StockPulse NICHT ist:</strong></p>
-                            <ul class="custom-list">
-                                <li>Kein Financial Advice (Legal Disclaimer)</li>
-                                <li>Keine Garantie für Profits (Spekulation = Risiko)</li>
-                                <li>Nicht für Buy-and-Hold Investoren (Fokus auf <30d Holds)</li>
-                                <li>Nicht reguliert als Financial Service (aktuell Research Tool)</li>
-                            </ul>
 
                             <p><strong>Was es IST:</strong></p>
                             <p>Ein Tool für Retail-Trader, die Social Momentum als Edge nutzen wollen – mit vollem Bewusstsein, dass spekulatives Trading high-risk ist.</p>
